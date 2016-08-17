@@ -56,20 +56,20 @@ if __name__ == "__main__":
         with open(file,"r") as f:
             host_list = f.readlines()
         for hostname in host_list:
-        hostname = hostname.rstrip()
-                try:
-                    hostinfo = zapi.host.get({"filter":{"host":hostname},"output":"hostid", "selectGroups": "extend", "selectParentTemplates": ["templateid","name"]})[0]
-                    hostid = hostinfo["hostid"]
-                    host_group_list = []
-                    host_template_list = []
-                    for l in hostinfo["groups"]:
-                        host_group_list.append(l["name"])
-                    for t in hostinfo["parentTemplates"]:
-                        host_template_list.append(t["name"])
-                    #print "host %s exist, hostid : %s, group: %s, template: %s " % (hostname, hostid, host_group_list, host_template_list)
-                    print "host %s exist, hostid : %s, group: %s" % (hostname, hostid, host_group_list)
-                except:
-                    print "host not exist: %s" %hostname
+            hostname = hostname.rstrip()
+            try:
+                hostinfo = zapi.host.get({"filter":{"host":hostname},"output":"hostid", "selectGroups": "extend", "selectParentTemplates": ["templateid","name"]})[0]
+                hostid = hostinfo["hostid"]
+                host_group_list = []
+                host_template_list = []
+                for l in hostinfo["groups"]:
+                    host_group_list.append(l["name"])
+                for t in hostinfo["parentTemplates"]:
+                    host_template_list.append(t["name"])
+                #print "host %s exist, hostid : %s, group: %s, template: %s " % (hostname, hostid, host_group_list, host_template_list)
+                print "host %s exist, hostid : %s, group: %s" % (hostname, hostid, host_group_list)
+            except:
+                print "host not exist: %s" %hostname
     else:
         try:
             hostinfo = zapi.host.get({"filter":{"host":hostname},"output":"hostid", "selectGroups": "extend", "selectParentTemplates": ["templateid","name"]})[0]

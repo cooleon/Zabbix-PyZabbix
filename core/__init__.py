@@ -33,7 +33,7 @@ class ZabbixAPI(object):
 	    s = json.loads(response.read())
 	    return s["result"]
 	except Exception as e:
-	    print "Error: ",s
+	    print "Error: ",e
 
     def __getattr__(self,name):
         return ZabbixObj(name,self)
