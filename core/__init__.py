@@ -1,7 +1,7 @@
 #!/bin/bin/env python
 #coding:utf-8
 
-import json 
+import json
 import urllib2
 
 class ZabbixAPI(object):
@@ -48,5 +48,6 @@ class ZabbixObj(object):
         def func(params):
             method = self.method_fomer+"."+name
             params = params
+            #print  params
             return  self.ZabbixAPI.deal_request(method=method,params=params)
         return func
